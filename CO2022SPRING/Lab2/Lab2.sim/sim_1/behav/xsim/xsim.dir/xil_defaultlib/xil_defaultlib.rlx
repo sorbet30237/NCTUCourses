@@ -2,11 +2,11 @@
 v2020.3.0
 Apr  7 2021
 05:52:48
-C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU.v,1650797128,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU_Ctrl.v,,ALU,,,,,,,,
-C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU_Ctrl.v,1650812209,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Adder.v,,ALU_Ctrl,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU.v,1651417946,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU_Ctrl.v,,ALU,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU_Ctrl.v,1651417658,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Adder.v,,ALU_Ctrl,,,,,,,,
 C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Adder.v,1650881842,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Decoder.v,,Adder,,,,,,,,
 C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Decoder.v,1651398422,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Instr_Memory.v,,Decoder,,,,,,,,
-C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Instr_Memory.v,1651399145,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/MUX_2to1.v,,Instr_Memory,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Instr_Memory.v,1651417696,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/MUX_2to1.v,,Instr_Memory,,,,,,,,
 C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Lab2.sim/sim_1/behav/xsim/glbl.v,1617756343,verilog,,,,glbl,,,,,,,,
 C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/MUX_2to1.v,1650807486,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ProgramCounter.v,,MUX_2to1,,,,,,,,
 C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ProgramCounter.v,1651397179,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Reg_File.v,,ProgramCounter,,,,,,,,
