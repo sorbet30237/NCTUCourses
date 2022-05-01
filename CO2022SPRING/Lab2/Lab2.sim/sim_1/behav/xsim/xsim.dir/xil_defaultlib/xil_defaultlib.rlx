@@ -1,0 +1,17 @@
+0.7
+v2020.3.0
+Apr  7 2021
+05:52:48
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU.v,1650797128,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU_Ctrl.v,,ALU,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ALU_Ctrl.v,1650812209,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Adder.v,,ALU_Ctrl,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Adder.v,1650881842,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Decoder.v,,Adder,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Decoder.v,1651398422,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Instr_Memory.v,,Decoder,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Instr_Memory.v,1651399145,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/MUX_2to1.v,,Instr_Memory,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Lab2.sim/sim_1/behav/xsim/glbl.v,1617756343,verilog,,,,glbl,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/MUX_2to1.v,1650807486,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ProgramCounter.v,,MUX_2to1,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/ProgramCounter.v,1651397179,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Reg_File.v,,ProgramCounter,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Reg_File.v,1651397179,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Shift_Left_Two_32.v,,Reg_File,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Shift_Left_Two_32.v,1650807585,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Sign_Extend.v,,Shift_Left_Two_32,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Sign_Extend.v,1650807847,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Simple_Single_CPU.v,,Sign_Extend,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/Simple_Single_CPU.v,1650811423,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/testbench.v,,Simple_Single_CPU,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/Lab2/testbench.v,1651397179,verilog,,,,TestBench,,,,,,,,

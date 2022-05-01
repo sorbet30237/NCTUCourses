@@ -25,8 +25,39 @@ output     [4-1:0] ALUCtrl_o;
 reg        [4-1:0] ALUCtrl_o;
 
 //Parameter
-
-       
+wire [5:0] add, sub, And, Or, slt, slti;
+assign add = 6'b100000;
+assign sub = 6'b100010;
+assign And = 6'b100100;
+assign Or = 6'b100101;
+assign slt = 6'b100110;
+assign slti = 6'b000000;
+always@(*) 
+    begin
+      if(ALUOp_i[2] == 1)
+        begin
+            ALUCtrl_o[0] = (funct_i == slt) || (funct_i == Or);
+            ALUCtrl_o[1] = (funct_i == add) || (funct_i == sub) || (funct_i == slt);
+            ALUCtrl_o[2] = (funct_i == slt) || (funct_i == sub);
+        end
+        else if(ALUOp_i[1:0] == 2'b11)
+        begin
+            ALUCtrl_o[2:0] = 3'b110;
+        end
+        
+        else if(ALUOp_i[1] == 1)
+        begin
+            ALUCtrl_o[2:0] = 3'b010;
+        end
+        
+        else if(ALUOp_i[0] == 1)
+        begin
+            ALUCtrl_o[2:0] = 3'b111;
+        end
+      
+        
+      ALUCtrl_o[3] = 0;
+    end   
 //Select exact operation
 
 endmodule     

@@ -24,9 +24,9 @@ output [32-1:0]	 sum_o;
 wire    [32-1:0]	 sum_o;
 
 //Parameter
-    
-//Main function
 
+//Main function
+assign sum_o = src1_i + src2_i;
 endmodule
 
 
