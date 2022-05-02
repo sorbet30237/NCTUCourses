@@ -47,18 +47,18 @@ class Agent():
             num_bins: Number of parts to be sliced.
 
         Returns:
-            a numpy array of #num_bins - 1 quantiles.		
+            a numpy array of #num_bins - 1 quantiles.
 
-        Example: 
-            Let's say that we want to slice [0, 10] into five parts, 
-            that means we need 4 quantiles that divide [0, 10]. 
+        Example:
+            Let's say that we want to slice [0, 10] into five parts,
+            that means we need 4 quantiles that divide [0, 10].
             Thus the return of init_bins(0, 10, 5) should be [2. 4. 6. 8.].
 
         Hints:
             1. This can be done with a numpy function.
         """
         # Begin your code
-        pass
+        return np.linspace(lower_bound, upper_bound, num_bins, endpoint=False)[1:]
         # End your code
 
     def discretize_value(self, value, bins):
@@ -77,10 +77,10 @@ class Agent():
             The return value of discretize_value(5, [2. 4. 6. 8.]) should be 2, since 4 <= 5 < 6 where [4, 6) is the 3rd bin.
 
         Hints:
-            1. This can be done with a numpy function.				
+            1. This can be done with a numpy function.
         """
         # Begin your code
-        pass
+        return np.digitize(value, bins)
         # End your code
 
     def discretize_observation(self, observation):
@@ -92,7 +92,7 @@ class Agent():
                 1. cart position.
                 2. cart velocity.
                 3. pole angle.
-                4. tip velocity. 
+                4. tip velocity.
 
         Returns:
             state: A list of 4 discretized features which represents the state.
@@ -103,7 +103,11 @@ class Agent():
             3. You might find something useful in Agent.__init__()
         """
         # Begin your code
-        pass
+        state = []
+        for value, bins in zip(observation, self.bins):
+            state.append(self.discretize_value(value, bins))
+
+        return state
         # End your code
 
     def choose_action(self, state):
@@ -118,7 +122,13 @@ class Agent():
             action: The action to be evaluated.
         """
         # Begin your code
-        pass
+        action = None
+        if np.random.uniform(0.0, 1.0) < self.epsilon:
+            action = np.random.randint(self.qtable.shape[4])
+        else:
+            action = np.argmax(self.qtable[state[0], state[1], state[2], state[3]])
+
+        return action
         # End your code
 
     def learn(self, state, action, reward, next_state, done):
@@ -136,11 +146,34 @@ class Agent():
             None (Don't need to return anything)
         """
         # Begin your code
-        pass
+        q = self.qtable[state[0], state[1], state[2], state[3], action]
+        next_q = np.max(self.qtable[next_state[0], next_state[1], next_state[2], next_state[3]])
+        self.qtable[state[0], state[1], state[2], state[3], action] = (1.0 - self.learning_rate)*q + self.learning_rate*(reward + self.gamma*next_q)
+
+        rewards = [0.0]
+        if np.random.uniform(0.0, 1.0) > 0.9999:
+            env = gym.make('CartPole-v0')
+            rewards = []
+            for _ in range(100):
+                state = self.discretize_observation(env.reset())
+                count = 0
+                while True:
+                    count += 1
+                    action = np.argmax(self.qtable[tuple(state)])
+                    next_observation, _, done, _ = env.step(action)
+
+                    next_state = self.discretize_observation(next_observation)
+
+                    if done == True:
+                        rewards.append(count)
+                        break
+
+                    state = next_state
         # End your code
 
         # You can add some conditions to decide when to save your table
-        np.save("./Tables/cartpole_table.npy", self.qtable)
+        if np.mean(rewards) > 180.0:
+            np.save("./Tables/cartpole_table.npy", self.qtable)
 
     def check_max_Q(self):
         """
@@ -156,7 +189,8 @@ class Agent():
             max_q: the max Q value of initial state(self.env.reset())
         """
         # Begin your code
-        pass
+        state = self.discretize_observation(self.env.reset())
+        return np.max(self.qtable[state[0], state[1], state[2], state[3]])
         # End your code
 
 
@@ -249,7 +283,7 @@ if __name__ == "__main__":
     The main funtion
     '''
     # Please change to the assigned seed number in the Google sheet
-    SEED = 20
+    SEED = 82
 
     env = gym.make('CartPole-v0')
     seed(SEED)

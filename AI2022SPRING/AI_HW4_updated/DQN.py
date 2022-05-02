@@ -29,7 +29,7 @@ class replay_buffer():
             reward: the reward agent got
             next_state: the next state
             done: the status showing whether the episode finish
-        
+
         Return:
             None
         '''
@@ -41,7 +41,7 @@ class replay_buffer():
 
         Parameter:
             batch_size: the number of samples which will be propagated through the neural network
-        
+
         Returns:
             observations: a batch size of states stored in the replay buffer
             actions: a batch size of actions stored in the replay buffer
@@ -70,10 +70,10 @@ class Net(nn.Module):
     def forward(self, states):
         '''
         Forward the state to the neural network.
-        
+
         Parameter:
             states: a batch size of states
-        
+
         Return:
             q_values: a batch size of q_values
         '''
@@ -87,7 +87,7 @@ class Agent():
     def __init__(self, env, epsilon=0.05, learning_rate=0.0002, GAMMA=0.97, batch_size=32, capacity=10000):
         """
         The agent learning how to control the action of the cart pole.
-        
+
         Hyperparameters:
             epsilon: Determines the explore/expliot rate of the agent
             learning_rate: Determines the step size while moving toward a minimum of a loss function
@@ -116,7 +116,7 @@ class Agent():
         '''
         - Implement the learning function.
         - Here are the hints to implement.
-        
+
         Steps:
         -----
         1. Update target net by current net every 100 times. (we have done for you)
@@ -127,12 +127,12 @@ class Agent():
         6. Backpropagation.
         7. Optimize the loss function.
         -----
-        
+
         Parameters:
             self: the agent itself.
             (Don't pass additional parameters to the function.)
             (All you need have been initialized in the constructor.)
-        
+
         Returns:
             None (Don't need to return anything)
         '''
@@ -140,29 +140,63 @@ class Agent():
             self.target_net.load_state_dict(self.evaluate_net.state_dict())
 
         # Begin your code
-        pass
+        observations, actions, rewards, next_observations, done = self.buffer.sample(self.batch_size)
+
+        q = self.evaluate_net(torch.FloatTensor(np.array(observations))).gather(1, torch.tensor(actions).view(-1, 1)).squeeze()
+        with torch.no_grad():
+            next_q = self.target_net(torch.FloatTensor(np.array(next_observations))).max(dim=1)[0]
+        q_ = torch.FloatTensor(rewards) + self.gamma*next_q*(1.0-torch.FloatTensor(done))
+
+        loss = ((q-q_)**2.0).mean()
+
+        self.optimizer.zero_grad()
+        loss.backward()
+        self.optimizer.step()
+
+        rewards = [0.0]
+        if np.random.uniform(0.0, 1.0) > 0.9999:
+            env = gym.make('CartPole-v0')
+            rewards = []
+            for _ in range(100):
+                state = env.reset()
+                count = 0
+                while True:
+                    count += 1
+                    Q = self.target_net.forward(
+                        torch.FloatTensor(state)).squeeze(0).detach()
+                    action = int(torch.argmax(Q).numpy())
+                    next_state, _, done, _ = env.step(action)
+                    if done:
+                        rewards.append(count)
+                        break
+                    state = next_state
         # End your code
 
         # You can add some conditions to decide when to save your neural network model
-        torch.save(self.target_net.state_dict(), "./Tables/DQN.pt")
+        if np.mean(rewards) > 199.0:
+            torch.save(self.target_net.state_dict(), "./Tables/DQN.pt")
 
     def choose_action(self, state):
         """
         - Implement the action-choosing function.
         - Choose the best action with given state and epsilon
-        
+
         Parameters:
             self: the agent itself.
             state: the current state of the enviornment.
             (Don't pass additional parameters to the function.)
             (All you need have been initialized in the constructor.)
-        
+
         Returns:
             action: the chosen action.
         """
         with torch.no_grad():
             # Begin your code
-            pass
+            action = None
+            if np.random.uniform(0.0, 1.0) < self.epsilon:
+                action = np.random.randint(self.n_actions)
+            else:
+                action = self.evaluate_net(torch.FloatTensor(state)).argmax().item()
             # End your code
         return action
 
@@ -170,27 +204,27 @@ class Agent():
         """
         - Implement the function calculating the max Q value of initial state(self.env.reset()).
         - Check the max Q value of initial state
-        
+
         Parameter:
             self: the agent itself.
             (Don't pass additional parameters to the function.)
             (All you need have been initialized in the constructor.)
-        
+
         Return:
             max_q: the max Q value of initial state(self.env.reset())
         """
         # Begin your code
-        pass
+        return self.evaluate_net(torch.FloatTensor(self.env.reset())).max().item()
         # End your code
 
 
 def train(env):
     """
     Train the agent on the given environment.
-    
+
     Paramenters:
         env: the given environment.
-    
+
     Returns:
         None (Don't need to return anything)
     """
@@ -220,10 +254,10 @@ def train(env):
 def test(env):
     """
     Test the agent on the given environment.
-    
+
     Paramenters:
         env: the given environment.
-    
+
     Returns:
         None (Don't need to return anything)
     """
@@ -262,13 +296,13 @@ if __name__ == "__main__":
     The main funtion
     '''
     # Please change to the assigned seed number in the Google sheet
-    SEED = 20
+    SEED = 82
 
     env = gym.make('CartPole-v0')
     seed(SEED)
     env.seed(SEED)
     env.action_space.seed(SEED)
-        
+
     if not os.path.exists("./Tables"):
         os.mkdir("./Tables")
 
@@ -278,7 +312,7 @@ if __name__ == "__main__":
         train(env)
     # testing section:
     test(env)
-    
+
     if not os.path.exists("./Rewards"):
         os.mkdir("./Rewards")
 

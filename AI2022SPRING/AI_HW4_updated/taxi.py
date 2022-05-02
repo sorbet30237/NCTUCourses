@@ -39,7 +39,13 @@ class Agent():
             action: The action to be evaluated.
         """
         # Begin your code
-        pass
+        action = None
+        if np.random.uniform(0.0, 1.0) < self.epsilon:
+            action = np.random.randint(self.qtable.shape[1])
+        else:
+            action = np.argmax(self.qtable[state])
+
+        return action
         # End your code
 
     def learn(self, state, action, reward, next_state, done):
@@ -57,11 +63,31 @@ class Agent():
             None (Don't need to return anything)
         """
         # Begin your code
-        pass
+        q = self.qtable[state, action]
+        next_q = np.max(self.qtable[next_state])
+        self.qtable[state, action] = (1.0 - self.learning_rate)*q + self.learning_rate*(reward + self.gamma*next_q)
+
+        rewards = [0.0]
+        if np.random.uniform(0.0, 1.0) > 0.999:
+            env = gym.make("Taxi-v3")
+            rewards = []
+            for _ in range(100):
+                state = env.reset()
+                count = 0
+                while True:
+                    action = np.argmax(self.qtable[state])
+                    next_state, reward, done, _ = env.step(action)
+                    count += reward
+                    if done == True:
+                        rewards.append(count)
+                        break
+
+                    state = next_state
         # End your code
 
         # You can add some conditions to decide when to save your table
-        np.save("./Tables/taxi_table.npy", self.qtable)
+        if np.mean(rewards) > 10.0:
+            np.save("./Tables/taxi_table.npy", self.qtable)
 
     def check_max_Q(self, state):
         """
@@ -74,27 +100,27 @@ class Agent():
             max_q: the max Q value of given state
         """
         # Begin your code
-        pass
+        return np.max(self.qtable[state])
         # End your code
 
 
 def extract_state(ori_state):
         state = []
-        
+
         if ori_state % 4 == 0:
             state.append('R')
         else:
             state.append('G')
-        
+
         ori_state = ori_state // 4
 
         if ori_state % 5 == 2:
             state.append('Y')
         else:
             state.append('B')
-        
+
         print(f"Initail state:\ntaxi at (2, 2), passenger at {state[1]}, destination at {state[0]}")
-        
+
 
 def train(env):
     """
@@ -157,7 +183,7 @@ def test(env):
 
             state = next_state
     # Please change to the assigned initial state in the Google sheet
-    state = 248
+    state = 249
 
     print(f"average reward: {np.mean(rewards)}")
     extract_state(state)
@@ -178,22 +204,22 @@ if __name__ == "__main__":
     The main funtion
     '''
     # Please change to the assigned seed number in the Google sheet
-    SEED = 20
+    SEED = 82
 
     env = gym.make("Taxi-v3")
     seed(SEED)
     env.seed(SEED)
     env.action_space.seed(SEED)
-        
+
     if not os.path.exists("./Tables"):
         os.mkdir("./Tables")
 
     # training section:
     for _ in range(5):
-        train(env)   
+        train(env)
     # testing section:
     test(env)
-        
+
     if not os.path.exists("./Rewards"):
         os.mkdir("./Rewards")
 
