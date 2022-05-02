@@ -86,7 +86,7 @@ class Agent():
         # End your code
 
         # You can add some conditions to decide when to save your table
-        if np.mean(rewards) > 10.0:
+        if np.mean(rewards) > 8.0:
             np.save("./Tables/taxi_table.npy", self.qtable)
 
     def check_max_Q(self, state):
