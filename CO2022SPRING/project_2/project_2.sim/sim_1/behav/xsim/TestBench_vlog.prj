@@ -1,0 +1,22 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../CO_Lab_4/lab4_code/ALU.v" \
+"../../../../../CO_Lab_4/lab4_code/ALU_Ctrl.v" \
+"../../../../../CO_Lab_4/lab4_code/Adder.v" \
+"../../../../../CO_Lab_4/lab4_code/Data_Memory.v" \
+"../../../../../CO_Lab_4/lab4_code/Decoder.v" \
+"../../../../../CO_Lab_4/lab4_code/Instruction_Memory.v" \
+"../../../../../CO_Lab_4/lab4_code/MUX_2to1.v" \
+"../../../../../CO_Lab_4/lab4_code/Pipe_CPU_1.v" \
+"../../../../../CO_Lab_4/lab4_code/Pipe_Reg.v" \
+"../../../../../CO_Lab_4/lab4_code/ProgramCounter.v" \
+"../../../../../CO_Lab_4/lab4_code/Reg_File.v" \
+"../../../../../CO_Lab_4/lab4_code/Shift_Left_Two_32.v" \
+"../../../../../CO_Lab_4/lab4_code/Sign_Extend.v" \
+"../../../../../CO_Lab_4/lab4_code/TestBench.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,30 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/ALU_Ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_Ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Adder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Adder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Data_Memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Data_Memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Instruction_Memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Instruction_Memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/MUX_2to1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX_2to1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Pipe_CPU_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Pipe_CPU_1
+INFO: [VRFC 10-2458] undeclared symbol EX_adder1_o, assumed default net type wire [C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Pipe_CPU_1.v:178]
+INFO: [VRFC 10-2458] undeclared symbol EX_adder2_o, assumed default net type wire [C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Pipe_CPU_1.v:180]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Pipe_Reg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Pipe_Reg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/ProgramCounter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ProgramCounter
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Reg_File.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Reg_File
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Shift_Left_Two_32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Shift_Left_Two_32
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/Sign_Extend.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Sign_Extend
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_4/lab4_code/TestBench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TestBench
