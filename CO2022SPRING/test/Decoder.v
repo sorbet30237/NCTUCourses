@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 //Version:     1
 //--------------------------------------------------------------------------------
-//Writer:      Luke
+//Writer:      109550112
 //----------------------------------------------
 //Date:        
 //----------------------------------------------
@@ -35,10 +35,24 @@ reg            RegDst_o;
 reg            Branch_o;
 
 //Parameter
-
+wire r,addi, slti, beq;
 
 //Main function
+assign r = (instr_op_i == 0);
+assign addi = (instr_op_i == 8);
+assign beq = (instr_op_i == 4);
+assign slti = (instr_op_i == 10);
 
+always@(*)
+    begin
+    RegWrite_o = addi | r | slti;
+    ALUSrc_o = addi | slti;
+    RegDst_o = r;
+    Branch_o = beq;
+    ALU_op_o[2] = r;
+	ALU_op_o[1] = addi | beq;
+	ALU_op_o[0] = beq | slti;
+    end
 endmodule
 
 
