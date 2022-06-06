@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 //Version:     1
 //--------------------------------------------------------------------------------
-//Writer:      
+//Writer:      109550112
 //----------------------------------------------
 //Date:        
 //----------------------------------------------
@@ -32,6 +32,29 @@ wire             zero_o;
 //Parameter
 
 //Main function
+
+
+assign zero_o = (result_o == 0);
+
+always@(*)
+    begin
+    result_o = 0;
+    case(ctrl_i)
+        0: result_o = src1_i & src2_i;
+        1: result_o = src1_i | src2_i;
+        2: result_o = src1_i + src2_i;
+        6: result_o = src1_i - src2_i;
+        7: if(src1_i<src2_i) 
+             begin
+                result_o = 1;
+             end 
+           else
+             begin
+                result_o = 0;
+             end            
+        12: result_o = ~(src1_i | src2_i);
+    endcase    
+    end
 
 endmodule
 
