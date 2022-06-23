@@ -11,7 +11,7 @@
 //--------------------------------------------------------------------------------
 
 `define CYCLE_TIME 10	
-`define MAX_COUNT 60	
+`define MAX_COUNT 700	
 
 module TestBench;
 

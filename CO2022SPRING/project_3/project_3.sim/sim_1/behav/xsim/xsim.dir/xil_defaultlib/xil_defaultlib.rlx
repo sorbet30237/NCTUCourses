@@ -1,0 +1,22 @@
+0.7
+v2020.3.0
+Apr  7 2021
+05:52:48
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/ALU.v,1655976072,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/ALU_Ctrl.v,,ALU,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/ALU_Ctrl.v,1655975491,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Adder.v,,ALU_Ctrl,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Adder.v,1654510895,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Data_Memory.v,,Adder,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Data_Memory.v,1654248494,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Decoder.v,,Data_Memory,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Decoder.v,1655973056,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Instruction_Memory.v,,Decoder,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Instruction_Memory.v,1655980046,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/MUX_2to1.v,,Instruction_Memory,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/MUX_2to1.v,1654510928,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/MUX_3to1.v,,MUX_2to1,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/MUX_3to1.v,1655980057,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Pipe_CPU_1.v,,MUX_3to1,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Pipe_CPU_1.v,1655970574,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Pipe_Reg.v,,Pipe_CPU_1,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Pipe_Reg.v,1655980079,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/ProgramCounter.v,,Pipe_Reg,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/ProgramCounter.v,1655980089,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Reg_File.v,,ProgramCounter,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Reg_File.v,1655980096,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Shift_Left_Two_32.v,,Reg_File,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Shift_Left_Two_32.v,1654510511,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Sign_Extend.v,,Shift_Left_Two_32,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/Sign_Extend.v,1654510970,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/forward_unit.v,,Sign_Extend,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/forward_unit.v,1655975869,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/hazard_detect.v,,forward_unit,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/lab5_code/hazard_detect.v,1655986552,verilog,,C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/testbench.v,,hazard_detect,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/CO_Lab_5/testbench.v,1655977851,verilog,,,,TestBench,,,,,,,,
+C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/project_3/project_3.sim/sim_1/behav/xsim/glbl.v,1617756343,verilog,,,,glbl,,,,,,,,

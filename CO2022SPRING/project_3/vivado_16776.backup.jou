@@ -1,0 +1,80 @@
+#-----------------------------------------------------------
+# Vivado v2020.3 (64-bit)
+# SW Build 3173277 on Wed Apr  7 05:07:49 MDT 2021
+# IP Build 3174024 on Wed Apr  7 23:42:35 MDT 2021
+# Start of session at: Thu Jun 23 15:05:28 2022
+# Process ID: 16776
+# Current directory: C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/project_3
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15264 C:\Users\user\Documents\GitHub\NCTUCourses\CO2022SPRING\project_3\project_3.xpr
+# Log file: C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/project_3/vivado.log
+# Journal file: C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/project_3\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/project_3/project_3.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
+launch_simulation
+source TestBench.tcl
+close_sim
