@@ -44,7 +44,7 @@ initial begin
         cpu.IM.instruction_file[i] = 32'b0;
     end
 
-    $readmemb("CO_P5_test_2.txt", cpu.IM.instruction_file);  //Read instruction from "CO_P4_test_1.txt"   
+    $readmemb("CO_P5_test_1.txt", cpu.IM.instruction_file);  //Read instruction from "CO_P4_test_1.txt"   
     
     // data memory
     for(i=0; i<128; i=i+1)

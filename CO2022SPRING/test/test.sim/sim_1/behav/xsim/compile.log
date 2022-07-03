@@ -1,0 +1,34 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/ALU_Ctrl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU_Ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Adder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Adder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Data_Memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Data_Memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Instruction_Memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Instruction_Memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/MUX_2to1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX_2to1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/MUX_3to1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX_3to1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Pipe_CPU_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Pipe_CPU_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Pipe_Reg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Pipe_Reg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/ProgramCounter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ProgramCounter
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Reg_File.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Reg_File
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Shift_Left_Two_32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Shift_Left_Two_32
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/Sign_Extend.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Sign_Extend
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/forward_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module forward_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/hazard_detect.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module hazard_detect
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/user/Documents/GitHub/NCTUCourses/CO2022SPRING/test/testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TestBench
