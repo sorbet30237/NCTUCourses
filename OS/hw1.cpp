@@ -9,6 +9,7 @@
 using namespace std;
 int main(){
     while(true){
+        
         string s;
         cout << ">";
         getline(cin, s);
@@ -24,17 +25,25 @@ int main(){
             S.push_back(p);
             p = strtok(NULL, d);		   
         }
+        
+        
         bool isand = false;
         if(S[S.size()-1] == "&"){
             isand = true;
             S.pop_back(); 
         }
+        
+        cout << S[S.size()-1] << endl; 
+        
         char **cmd = new char*[S.size()+1];
         cmd[S.size()] = NULL;
         for(int i = 0;i<S.size();i++){
             cmd[i] = S[i];
 //            cout << cmd[i] << " ";
         }
+        
+        
+        
         pid_t pid = fork();
         if(pid < 0){
             cout << "fork failed";
