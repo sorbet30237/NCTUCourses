@@ -45,6 +45,7 @@ int main(){
                 execvp(cmd[0],cmd);
             }
             else{
+                wait(NULL);
                 exit(-1);
             }
         }
