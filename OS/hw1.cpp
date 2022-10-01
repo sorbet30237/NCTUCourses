@@ -28,12 +28,11 @@ int main(){
         
         
         bool isand = false;
-        if(S[S.size()-1] == "&"){
+        
+        if(strncmp(S[S.size()-1], "&", 1){
             isand = true;
             S.pop_back(); 
         }
-        
-        cout << isand << endl; 
         
         char **cmd = new char*[S.size()+1];
         cmd[S.size()] = NULL;
