@@ -33,7 +33,7 @@ int main(){
             S.pop_back(); 
         }
         
-        cout << S[S.size()-1] << endl; 
+        cout << isand << endl; 
         
         char **cmd = new char*[S.size()+1];
         cmd[S.size()] = NULL;
