@@ -45,7 +45,9 @@ int main(){
                 execvp(cmd[0],cmd);
             }
             else{
-                wait(NULL);
+                if(cmd[S.size()-1] != "&"){
+                    wait(NULL);
+                }
                 exit(-1);
             }
         }
