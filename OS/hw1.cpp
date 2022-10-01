@@ -24,6 +24,11 @@ int main(){
             S.push_back(p);
             p = strtok(NULL, d);		   
         }
+        bool isand = false;
+        if(S[S.size()-1] == "&"){
+            isand = true;
+            S.pop_back(); 
+        }
         char **cmd = new char*[S.size()+1];
         cmd[S.size()] = NULL;
         for(int i = 0;i<S.size();i++){
@@ -45,7 +50,7 @@ int main(){
                 execvp(cmd[0],cmd);
             }
             else{
-                if(cmd[S.size()-1] != "&"){
+                if(isand == false){
                     wait(NULL);
                 }
                 exit(-1);
