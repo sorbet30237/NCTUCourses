@@ -29,7 +29,7 @@ int main(){
         
         bool isand = false;
         
-        if(strcmp(S[S.size()-1], "&", 1)==0){
+        if(strcmp(S[S.size()-1], "&")==0){
             isand = true;
             S.pop_back(); 
         }
