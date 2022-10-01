@@ -67,7 +67,7 @@ int main(){
         else{
             wait(NULL);
         }
-        cout << endl;
+//        cout << endl;
     }
     return 0;
 }
