@@ -61,12 +61,13 @@ int main(){
                 if(isand == false){
                     wait(NULL);
                 }
-                exit(-1);
+                exit(0);
             }
         }
         else{
             wait(NULL);
         }
+        delete cmd;
 //        cout << endl;
     }
     return 0;
