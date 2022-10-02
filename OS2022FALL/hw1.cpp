@@ -67,7 +67,7 @@ int main(){
         else{
             wait(NULL);
         }
-        delete cmd[];
+        delete [] cmd;
 //        cout << endl;
     }
     return 0;
