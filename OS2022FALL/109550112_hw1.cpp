@@ -1,3 +1,12 @@
+/*
+Student No.: 109550112  
+Student Name: ªLªÃ 
+Email: t109550112.cs09@nctu.edu.tw
+SE tag: xnxcxtxuxoxsx
+Statement: I am fully aware that this program is not
+supposed to be posted to a public server, such as a
+public GitHub repository or a public web page.
+*/
 #include<iostream>
 #include<cstring>
 #include<string>
