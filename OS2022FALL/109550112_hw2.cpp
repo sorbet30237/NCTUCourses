@@ -1,4 +1,3 @@
-//docker run -it -v C:/Users/user/Documents/GitHub/NCTUCourses/NP2022FALL/HW1:/home/hw1 ubuntu:18.04 bin/bash
 #include<iostream>
 #include<vector>
 #include <sys/shm.h>

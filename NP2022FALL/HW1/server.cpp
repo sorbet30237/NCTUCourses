@@ -135,8 +135,8 @@ int main(int argc, char** argv){
         exit(-1);
     }
     
-//    cout << "UDP server is running" << endl;
-//    cout << "TCP server is running" << endl;
+    cout << "UDP server is running" << endl;
+    cout << "TCP server is running" << endl;
     
     while(true){
         
@@ -214,7 +214,7 @@ int main(int argc, char** argv){
             int flags_tcp_new = fcntl(socket_tcp_new, F_GETFL, 0);
             fcntl(socket_tcp_new, F_SETFL, flags_tcp_new | O_NONBLOCK);
             
-            cout << "New Connection." << endl;
+            cout << "New connection." << endl;
             send(socket_tcp_new, "*****Welcome to Game 1A2B*****", sizeof("*****Welcome to Game 1A2B*****"), 0);
 
             socket_tcp_new_vec.push_back(socket_tcp_new);
@@ -380,6 +380,7 @@ int main(int argc, char** argv){
 	                            exit(0);
 	                        }
 	                        socket_tcp_new_vec.erase(socket_tcp_new_vec.begin() + i);
+	                        cout << "tcp get msg: exit" << endl;
 	                    }
 	                }
 	                else if(cmd_vec[0] == "start-game"){
