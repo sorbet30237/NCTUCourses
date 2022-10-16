@@ -13,10 +13,10 @@ using namespace std;
 
 
 
-int main(){
+int main(int argc, char** argv){
     
-    char* server_ip = "127.0.0.1";
-    int server_port = 8888;
+    char* server_ip = argv[1];
+    int server_port = atoi(argv[2]);
     
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;

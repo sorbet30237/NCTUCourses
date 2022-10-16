@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-
+#include <cstdlib>
+#include <ctime>
 #include <vector>
 #include <map>
 #include <sys/socket.h>
@@ -22,21 +23,69 @@ struct User{
     string email = "";
     string password = "";
     bool islogin = false;
+    string num = "";
+    int guesstime = 5;
 };
 
+string number(string num,string guess){
+    string digits = "0123456789";
+    map<char,int> mguess;
+    map<char,int> mnum;
+    int a=0;
+    int b=0;
+    string num_;
+    num_ = num;
+    for(int y = 0;y<num_.size();y++){
+        if(num_[y] == guess[y]){
+            a++;
+            num_.erase(num_.begin()+y,num_.begin()+y+1);
+            guess.erase(guess.begin()+y,guess.begin()+y+1);
+            y = -1;
+        }
+    }
+    for(char temp = '0';temp<='9';temp++){
+        mguess[temp] = 0;
+        mnum[temp] = 0;
+    }
+    for(int y=0;y<guess.size();y++){
 
+        mguess[guess[y]]++;
+        mnum[num_[y]]++;
+    }
+    for(char temp = '0';temp<='9';temp++){
+        b = b+min(mguess[temp],mnum[temp]);
+    }
+    if(a==4){
+        return "4A0B";
+    }
+    else{
+        string ans = "";
+        ans+=digits[a];
+        ans+="A";
+        ans+=digits[b];
+        ans+="B";
+        return ans;
+    }
+}
 
-int main(){
+int main(int argc, char** argv){
+    
+    
+    
     
     vector<User> user_vec;
     vector<int> socket_tcp_new_vec;
     
     map<int,string> logginguser;
     
+    
+    string digits = "0123456789";
+	srand( time(NULL) );
+    
     int max_n_client = 100;
     
     char* server_ip = "127.0.0.1";
-    int server_port = 8888;
+    int server_port = atoi(argv[1]);
     
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
@@ -86,7 +135,8 @@ int main(){
         exit(-1);
     }
     
-    
+//    cout << "UDP server is running" << endl;
+//    cout << "TCP server is running" << endl;
     
     while(true){
         
@@ -185,93 +235,207 @@ int main(){
                     cmd_vec.push_back(cmd_);
                     cmd = strtok(NULL, " ");
                 }
-                if(cmd_vec[0] == "login"){
-                    if(cmd_vec.size() != 3){
-                        char msg_send[] = "Usage: login <username> <password>";
-                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                    }
-                    else{
-                        bool isuser = false;
-                        bool isbreak = false;
-                        for(int j = 0;j<user_vec.size();j++){
-                            if(user_vec[j].username == cmd_vec[1]){
-                                isuser = true;
-                                if(user_vec[j].password != cmd_vec[2]){
-                                    char msg_send[] = "Password not correct";
-                                    send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                                    isbreak = true;
-                                    break;
-                                }
-                                if(user_vec[j].islogin == true){
-                                    char msg_send[] = "Please logout first";
-                                    send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                                    isbreak = true;
-                                    break;
-                                }
-                            }
-                        }
-                        if(isuser == false){
-                            char msg_send[] = "Username not found.";
-                            send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                        }
-                        else{
-                            if(isbreak == false and isuser == true){
-                                string temp = "Welcome, " + cmd_vec[1] + ".";
-                                char msg_send[temp.size()+1];
-                                strcpy(msg_send,temp.c_str());
-                                logginguser[socket_tcp_new] = cmd_vec[1];
-                                send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                            }
-                        }
-                    }
-                }
-                else if(cmd_vec[0] == "logout"){
-                    if(cmd_vec.size() != 1){
-                        char msg_send[] = "Usage: logout";
-                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                    }
-                    else{
-                        if(logginguser[socket_tcp_new] == ""){
-                            char msg_send[] = "Please login first.";
-                            send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                        }
-                        else{
-                            for(int j = 0;j<user_vec.size();j++){
-                                if(logginguser[socket_tcp_new] == user_vec[j].username){
-                                    user_vec[j].islogin = false;
-                                    logginguser[socket_tcp_new] = "";
-                                    string temp = "Bye, " + user_vec[j].username +".";
-                                    char msg_send[temp.size()+1];
-                                    strcpy(msg_send,temp.c_str());
-                                    send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                                    break;
-                                } 
-                            }
-                        }
-                    }
-                    
-                }
-                else if(cmd_vec[0] == "exit"){
-                    if(cmd_vec.size() != 1){
-                        char msg_send[] = "Usage: exit";
-                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
-                    }
-                    else{
-                        if(logginguser[socket_tcp_new] != ""){
-                            for(int j = 0;j<user_vec.size();j++){
-                                if(logginguser[socket_tcp_new] == user_vec[j].username){
-                                    user_vec[j].islogin = false;
-                                    logginguser[socket_tcp_new] = "";
-                                }
-                            }
-                        }
-                        if(close(socket_tcp_new_vec[i]) < 0) {
-                            cout << "TCP socket new close failed!" << endl;
-                            exit(0);
-                        }
-                        socket_tcp_new_vec.erase(socket_tcp_new_vec.begin() + i);
-                    }
-                }
+                bool isplay = false;
+                for(int j = 0;j<user_vec.size();j++){
+                	if(logginguser[socket_tcp_new_vec[i]] == user_vec[j].username){
+                		if(user_vec[j].num != ""){
+                			isplay = true; 
+						}
+						break;
+					}
+				}
+				if(isplay == true){
+					for(int j = 0;j<user_vec.size();j++){
+						if(logginguser[socket_tcp_new_vec[i]] == user_vec[j].username){
+							bool iswrong = false;
+							if(cmd_vec[0].size()!=4){
+								char msg_send[] = "Your guess should be a 4-digit number.";
+	                        	send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                        	iswrong = true;
+							}
+							else{
+								for(int k = 0;k<cmd_vec[0].size();k++){
+									if(cmd_vec[0][k]<'0' or cmd_vec[0][k]>'9'){
+										char msg_send[] = "Your guess should be a 4-digit number.";
+	                        			send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                        			iswrong = true;
+	                        			break;
+									}
+								}
+							}
+							if(iswrong == false){
+								string ans = number(user_vec[j].num,cmd_vec[0]);
+								if(ans != "4A0B"){
+									user_vec[j].guesstime--;
+									if(user_vec[j].guesstime == 0){
+										ans+="\nYou lose the game!";
+										user_vec[j].num = "";
+										user_vec[j].guesstime = 5;
+									}
+									int n = ans.length();
+									char msg_send[n+1];
+									strcpy(msg_send, ans.c_str());
+	                        		send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+								}
+								else{
+									char msg_send[] = "You got the answer!";
+									send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+									user_vec[j].num = "";
+									user_vec[j].guesstime = 5;
+								}
+							}
+						}
+						break;
+					}
+				}
+				else{
+					if(cmd_vec[0] == "login"){
+	                    if(cmd_vec.size() != 3){
+	                        char msg_send[] = "Usage: login <username> <password>";
+	                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                    }
+	                    else{
+	                        bool isuser = false;
+	                        bool isbreak = false;
+	                        for(int j = 0;j<user_vec.size();j++){
+	                            if(user_vec[j].username == cmd_vec[1]){
+	                                isuser = true;
+	                                if(user_vec[j].password != cmd_vec[2]){
+	                                    char msg_send[] = "Password not correct.";
+	                                    send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                                    isbreak = true;
+	                                    break;
+	                                }
+	                                if(user_vec[j].islogin == true){
+	                                    char msg_send[] = "Please logout first.";
+	                                    send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                                    isbreak = true;
+	                                    break;
+	                                }
+	                            }
+	                        }
+	                        if(isuser == false){
+	                            char msg_send[] = "Username not found.";
+	                            send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                        }
+	                        else{
+	                            if(isbreak == false and isuser == true){
+	                                string temp = "Welcome, " + cmd_vec[1] + ".";
+	                                char msg_send[temp.size()+1];
+	                                strcpy(msg_send,temp.c_str());
+	                                logginguser[socket_tcp_new_vec[i]] = cmd_vec[1];
+	                                for(int j = 0;j<user_vec.size();j++){
+	                                	if(user_vec[j].username == cmd_vec[1]){
+	                                		user_vec[j].islogin = true;
+	                                		break;
+										}
+									}
+	                                send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                            }
+	                        }
+	                    }
+	                }
+	                else if(cmd_vec[0] == "logout"){
+	                    if(cmd_vec.size() != 1){
+	                        char msg_send[] = "Usage: logout";
+	                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                    }
+	                    else{
+	                        if(logginguser[socket_tcp_new_vec[i]] == ""){
+	                            char msg_send[] = "Please login first.";
+	                            send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                        }
+	                        else{
+	                            for(int j = 0;j<user_vec.size();j++){
+	                                if(logginguser[socket_tcp_new_vec[i]] == user_vec[j].username){
+	                                    user_vec[j].islogin = false;
+	                                    logginguser[socket_tcp_new_vec[i]] = "";
+	                                    string temp = "Bye, " + user_vec[j].username +".";
+	                                    char msg_send[temp.size()+1];
+	                                    strcpy(msg_send,temp.c_str());
+	                                    send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                                    break;
+	                                } 
+	                            }
+	                        }
+	                    }
+	                    
+	                }
+	                else if(cmd_vec[0] == "exit"){
+	                    if(cmd_vec.size() != 1){
+	                        char msg_send[] = "Usage: exit";
+	                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+	                    }
+	                    else{
+	                        if(logginguser[socket_tcp_new_vec[i]] != ""){
+	                            for(int j = 0;j<user_vec.size();j++){
+	                                if(logginguser[socket_tcp_new] == user_vec[j].username){
+	                                    user_vec[j].islogin = false;
+	                                    logginguser[socket_tcp_new_vec[i]] = "";
+	                                }
+	                            }
+	                        }
+	                        if(close(socket_tcp_new_vec[i]) < 0) {
+	                            cout << "TCP socket new close failed!" << endl;
+	                            exit(0);
+	                        }
+	                        socket_tcp_new_vec.erase(socket_tcp_new_vec.begin() + i);
+	                    }
+	                }
+	                else if(cmd_vec[0] == "start-game"){
+	                	if(logginguser[socket_tcp_new_vec[i]] == ""){
+	                		char msg_send[] = "Please login first.";
+	                        send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+						}
+						else{
+							if(cmd_vec.size() != 1 and cmd_vec.size()!=2){
+								char msg_send[] = "Usage: start-game <4-digit number>";
+		                    	send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+							}
+							else{
+								string ans = "";
+								bool invalid = false;
+								if(cmd_vec.size() == 1){
+								    vector<int> x;
+								    x.resize(4,0);
+								    for(int j = 0;j<4;j++){
+								        x[j] = rand()%10;
+								    }
+								    for(int j = 0;j<4;j++){
+								    	ans+=digits[x[j]];
+								    }
+								}
+								else{
+									if(cmd_vec[1].size() != 4){
+										char msg_send[] = "Usage: start-game <4-digit number>";
+		                        		send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+		                        		invalid = true;
+									}
+									for(int k = 0;k<cmd_vec[1].size();k++){
+										if(cmd_vec[1][k]<'0' or cmd_vec[1][k]>'9'){
+											char msg_send[] = "Usage: start-game <4-digit number>";
+		                        			send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+		                        			invalid = true;
+		                        			break;
+										}
+									}
+									ans = cmd_vec[1];
+								}
+								if(invalid == false){
+									for(int j = 0;j<user_vec.size();j++){
+										if(logginguser[socket_tcp_new_vec[i]] == user_vec[j].username){
+											user_vec[j].num = ans;
+											break; 
+										}
+									}
+									char msg_send[] = "Please typing a 4-digit number:";
+			                    	send(socket_tcp_new_vec[i], msg_send, sizeof(msg_send), 0);
+								}
+							}
+						}
+					}
+				}
+                
             }
         }
     }
