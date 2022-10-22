@@ -369,7 +369,7 @@ int main(int argc, char** argv){
 	                    else{
 	                        if(logginguser[socket_tcp_new_vec[i]] != ""){
 	                            for(int j = 0;j<user_vec.size();j++){
-	                                if(logginguser[socket_tcp_new] == user_vec[j].username){
+	                                if(logginguser[socket_tcp_new_vec[i]] == user_vec[j].username){
 	                                    user_vec[j].islogin = false;
 	                                    logginguser[socket_tcp_new_vec[i]] = "";
 	                                }

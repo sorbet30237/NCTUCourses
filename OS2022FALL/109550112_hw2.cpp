@@ -1,3 +1,12 @@
+/*
+Student No.: 109550112
+Student Name: ªLªÃ 
+Email: t109550112.cs09@nctu.edu.tw
+SE tag: xnxcxtxuxoxsx
+Statement: I am fully aware that this program is not
+supposed to be posted to a public server, such as a
+public GitHub repository or a public web page.
+*/
 #include<iostream>
 #include<vector>
 #include <sys/shm.h>
@@ -65,14 +74,14 @@ int main(){
 		gettimeofday(&e,0);
 		unsigned int sum = 0;
         int start = 0*size;
-        int end = (799+1)*size;
+        int end = (size)*size;
         for(int i = start;i<end;i++){
             sum+=c[i];
         }
         float sec = e.tv_sec - s.tv_sec;
-		float usec = e.tv_usec - s.tv_usec;
+		float float_sec = e.tv_usec - s.tv_usec;
 		cout << "Multiplying matrices using "<< i << " process"<<endl;
-		cout << "Elapsed time: "<<sec + (usec/1000000.0)<<" sec, Checksum: "<<sum<<endl;
+		cout << "Elapsed time: "<<sec + (float_sec/1000000.0)<<" sec, Checksum: "<<sum<<endl;
     }
     
     
