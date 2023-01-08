@@ -2,12 +2,25 @@
 #include<vector>
 #include<queue>
 #include<map> 
+#include<string>
+#include<pthread.h>
+#include<semaphore.h>
+#include <sys/time.h>
 using namespace std;
 
 struct range{
 	int start;
 	int end;
 };
+
+vector<int> vec;
+vector<range> job;
+map<int,string> m;
+sem_t s1, s2, t;
+
+int k;
+int size;
+
 
 void bubblesort(vector<int> &vec, int start,int end){
 	for(int i = start;i<end;i++){
@@ -21,148 +34,279 @@ void bubblesort(vector<int> &vec, int start,int end){
 	}
 }
 
-range jobspawn(int start, int end, map<int,int>& m){
-	
-	int size = end-start;
-	if(start%(2*size) == 0){
-		bool done = true;
-		for(int i = start+size;i<start+2*size;i++){
-			if(m[i] == 0){
-				done = false;
-				break;
-			}
-		}
-		if(done == true){
-			for(int i = start;i<start+2*size;i++){
-				m[i] = 0;
-			}
-			range temp;
-			temp.start = start;
-			temp.end = end+size;
-			return temp;
+void merge(vector<int> &vec, int start, int end, int k, int size){
+	int mid = (size/k)*((start+end)/2);
+	start = (size/k)*start;
+	if(end != k){
+			end = (size/k)*end;
 		}
 		else{
-			range temp;
-			temp.start = -1;
-			return temp;
-		}
+			end = size;
 	}
-	else if(start%(2*size) == size){
-		bool done = true;
-		for(int i = start-size;i<start;i++){
-			if(m[i] == 0){
-				done = false;
-				break;
-			}
-		}
-		if(done == true){
-			for(int i = start-size;i<start+size;i++){
-				m[i] = 0;
-			}
-			range temp;
-			temp.start = start-size;
-			temp.end = end;
-			return temp;
+	vector<int> v1;
+	vector<int> v2;
+	for(int i = start;i<mid;i++){
+		v1.push_back(vec[i]);
+	}
+	for(int i = mid;i<end;i++){
+		v2.push_back(vec[i]);
+	}
+	int p1 = 0;
+	int p2 = 0;
+	int p = start;
+	while(p1 != v1.size() and p2 != v2.size()){
+		if(v1[p1]<v2[p2]){
+			vec[p] = v1[p1];
+			p1++;
+			p++; 
 		}
 		else{
-			range temp;
-			temp.start = -1;
-			return temp;
+			vec[p] = v2[p2];
+			p2++;
+			p++;
 		}
 	}
-	else{
-		range temp;
-		temp.start = -1;
-		return temp;
+	if(p1 != v1.size()){
+		for(int i = p;i<end;i++){
+			vec[i] = v1[p1];
+			p1++;
+		}
 	}
-//	if(end-start == 1){
-//		if(start%2 == 0){
-//			if(m[start+1] == 1){
-//				m[start] = 0;
-//				m[start+1] = 0;
-//				range temp;
-//				temp.start = start;
-//				temp.end = end+1;
-//				return temp;
-//			}
-//			else{
-//				range temp;
-//				temp.start = -1;
-//				return temp;
-//			}
-//		}
-//		else{
-//			if(m[start-1] == 1){
-//				m[start] = 0;
-//				m[start-1] = 0;
-//				range temp;
-//				temp.start = start-1;
-//				temp.end = end;
-//				return temp;
-//			}
-//			else{
-//				range temp;
-//				temp.start = -1;
-//				return temp;
-//			}
-//		}
-//	}
-//	else if(end-start == 2){
-//		if(start%4 == 0){
-//			if(m[start+2] == 1 and m[start+3] == 1){
-//				for(int i = start;i<start+4;i++){
-//					m[i] = 0;
-//				}
-//				range temp;
-//				temp.start = start;
-//				temp.end = end+2;
-//				return temp;
-//			}
-//			else{
-//				range temp;
-//				temp.start = -1;
-//				return temp;
-//			}
-//		}
-//		else{
-//			if(m[start-2] == 1 and m[start-1] == 1){
-//				for(int i = start-2;i<=end;i++){
-//					m[i] = 0;
-//				}
-//				range temp;
-//				temp.start = start-2;
-//				temp.end = end;
-//				return temp;
-//			}
-//			else{
-//				range temp;
-//				temp.start = -1;
-//				return temp;
-//			}
-//		}
-//	}
-//	else if(end-start == 4){
-//		
-//	}
-//	else{
-//		range temp;
-//		temp.start = -1;
-//		return temp;
-//	}
+	if(p2 != v2.size()){
+		for(int i = p;i<end;i++){
+			vec[i] = v2[p2];
+			p2++;
+		}
+	}
 }
 
-int k = 8;
+void* work(void *){
+	
+	while(true){
+		
+		sem_wait(&s1);
+		sem_wait(&t);
+		range temp = job[job.size()-1];
+		job.pop_back();
+		sem_post(&t);
+		int start = temp.start/(size/k);
+		int end;
+		if(temp.end != size-1){
+			end = (temp.end+1)/(size/k);
+		}
+		else{
+			end = k;
+		}
+		if(end-start == 1){
+			bubblesort(vec,temp.start,temp.end);
+		}
+		else{
+			merge(vec,start,end,k,size);
+		}
+		sem_wait(&t);
+		for(int i = start;i<end;i++){
+			m[i] = "1";
+			if(end-start == 1){
+				m[i]+="1";
+			}
+			else if(end-start == 2){
+				m[i]+="2";
+			}
+			else if(end-start == 4){
+				m[i]+="3";
+			}
+			else if(end-start == 8){
+				m[i]+="4";
+			}
+		}
+		sem_post(&t);
+		sem_post(&s2);
+	}
+}
+
+range jobspawn(map<int,string>& m){
+	sem_wait(&t);
+	for(int i = 0;i<8;i++){
+		if(m[i] != "00"){
+			if(m[i][1] == '1'){
+				if(i%2 == 1 and m[i-1] == "11"){
+					for(int j = i-1;j<i+1;j++){
+						m[j] = "00";
+					}
+					range temp;
+					temp.start = i-1;
+					temp.end = i+1;
+					sem_post(&t);
+					return temp;
+				}
+				else if(i%2 == 0 and m[i+1] == "11"){
+					for(int j = i;j<i+2;j++){
+						m[j] = "00";
+					}
+					range temp;
+					temp.start = i;
+					temp.end = i+2;
+					sem_post(&t);
+					return temp;
+				}
+				else{
+					if(i>=7){
+						range temp;
+						temp.start = -1;
+						sem_post(&t);
+						return temp;
+					}
+				}
+			}
+			else if(m[i][1] == '2'){
+				if(i%4 == 2){
+					bool done = true;
+					for(int j = i-2;j<i;j++){
+						if(m[j] != "12"){
+							done = false;
+							break;
+						}
+					}
+					if(done == true){
+						for(int j = i-2;j<i+2;j++){
+							m[j] = "00";
+						}
+						range temp;
+						temp.start = i-2;
+						temp.end = i+2;
+						sem_post(&t);
+						return temp;
+					}
+					else{
+						if(i>=7){
+							range temp;
+							temp.start = -1;
+							sem_post(&t);
+							return temp;
+						}
+					}
+				}
+				else if(i%4 == 0){
+					bool done = true;
+					for(int j = i+2;j<i+4;j++){
+						if(m[j] != "12"){
+							done = false;
+							break;
+						}
+					}
+					if(done == true){
+						for(int j = i;j<i+4;j++){
+							m[j] = "00";
+						}
+						range temp;
+						temp.start = i;
+						temp.end = i+4;
+						sem_post(&t);
+						return temp;
+					}
+					else{
+						if(i>=7){
+							range temp;
+							temp.start = -1;
+							sem_post(&t);
+							return temp;
+						}
+					}
+				}
+			}
+			else if(m[i][1] == '3'){
+				if(i%8 == 4){
+					bool done = true;
+					for(int j = i-4;j<i;j++){
+						if(m[j] != "13"){
+							done = false;
+							break;
+						}
+					}
+					if(done == true){
+						for(int j = i-4;j<i+4;j++){
+							m[j] = "00";
+						}
+						range temp;
+						temp.start = i-4;
+						temp.end = i+4;
+						sem_post(&t);
+						return temp;
+					}
+					else{
+						if(i>=7){
+							range temp;
+							temp.start = -1;
+							sem_post(&t);
+							return temp;
+						} 
+					}
+				}
+				else if(i%8 == 0){
+					bool done = true;
+					for(int j = i+4;j<i+8;j++){
+						if(m[j] != "13"){
+							done = false;
+							break;
+						}
+					}
+					if(done == true){
+						for(int j = i;j<i+8;j++){
+							m[j] = "00";
+						}
+						range temp;
+						temp.start = i;
+						temp.end = i+8;
+						sem_post(&t);
+						return temp;
+					}
+					else{
+						if(i>=7){
+							range temp;
+							temp.start = -1;
+							sem_post(&t);
+							return temp;
+						} 
+						
+					}
+				}
+			}
+		}
+	}
+	range temp;
+	temp.start = -1;
+	sem_post(&t);
+	return temp;
+						
+}
+
+
+
 int main(){
-	vector<int> vec;
-	int size=9;
+	
+	struct timeval s, e;
+	gettimeofday(&s, 0);
+	
+	int n = 8;
+	k = 8;
+	sem_init(&t, 0, 1);
+	sem_init(&s1, 0, 0);
+	sem_init(&s2, 0, 0);
+	for(int i = 0;i<n;i++){
+		pthread_t t;
+	    if (pthread_create(&t, NULL, work, NULL) != 0) {
+//	        cerr << "Error: pthread_create\n";
+	    }
+	    pthread_detach(t);
+	}
+	
+	size=100000;
 	vec.resize(size,0);
 	for(int i = 0;i<size;i++){
 		vec[i] = size-i;
 		cout << vec[i] << " ";
 	}
 	cout <<endl;
-	vector<range> job;
-	map<int,int> m;
 	for(int i = 0;i<k;i++){
 		range temp;
 		temp.start = (size/k)*i;
@@ -172,26 +316,34 @@ int main(){
 		else{
 			temp.end = (size/k)*(i+1)-1;
 		}
-		m[i] = 0;
+		m[i] = "00";
+		sem_wait(&t);
 		job.push_back(temp);
+		sem_post(&t);
+		sem_post(&s1);
 	}
-	while(job.size()!=0){
-		range temp = job[0];
-		job.erase(job.begin());
-		bubblesort(vec,temp.start,temp.end);
-		int start = temp.start/(size/k);
-		int end;
-		if(temp.end != size-1){
-			end = (temp.end+1)/(size/k);
+	
+	bool flag = true;
+	while(true){
+	
+		sem_wait(&s2);
+
+		for(int i = 0;i<k;i++){
+			if(m[i] != "14"){
+				break;
+			}
+			else{
+				if(i==k-1){
+					flag = false;
+				}
+			}
 		}
-		else{
-			end = k;
+		if(flag == false){
+			break;
 		}
-		for(int i = start;i<end;i++){
-			m[i] = 1;
-		}
-		cout << start << " " << end << " ";
-		range newjob = jobspawn(start, end, m);
+
+		range newjob = jobspawn(m);
+
 		if(newjob.start == -1){
 			continue;
 		}
@@ -202,10 +354,20 @@ int main(){
 		else{
 			newjob.end = size-1;
 		}
+		sem_wait(&t);
 		job.push_back(newjob);
+		sem_post(&t);
+		sem_post(&s1);
+		
 	}
+
 	for(int i = 0;i<size;i++){
 		cout << vec[i]<<" ";
 	}
+	gettimeofday(&e,0);
+	
+	float sec = e.tv_sec - s.tv_sec;
+	float float_sec = e.tv_usec - s.tv_usec;
+	cout << endl << "Elapsed time: "<<sec + (float_sec/1000000.0)<<endl;
 	return 0;
 }

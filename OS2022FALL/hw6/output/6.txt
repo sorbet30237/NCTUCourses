@@ -1,0 +1,3 @@
+cat: tarfs/blue.txt: No such file or directory
+cat: tarfs/red.txt: No such file or directory
+cat: tarfs/yellow.txt: No such file or directory

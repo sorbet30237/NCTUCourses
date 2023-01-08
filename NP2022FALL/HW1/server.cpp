@@ -71,8 +71,6 @@ string number(string num,string guess){
 int main(int argc, char** argv){
     
     
-    
-    
     vector<User> user_vec;
     vector<int> socket_tcp_new_vec;
     

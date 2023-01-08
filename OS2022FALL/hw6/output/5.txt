@@ -1,0 +1,4 @@
+ls: cannot access 'tarfs/blue.txt': No such file or directory
+ls: reading directory 'tarfs': Input/output error
+total 0
+?????????? ? ? ? ?            ? blue.txt
