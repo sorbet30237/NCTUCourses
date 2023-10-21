@@ -1,3 +1,0 @@
-od: tarfs/largefile/8mb.txt: No such file or directory
-od: tarfs/largefile/9mb.txt: No such file or directory
-od: tarfs/largefile/9mb.txt: No such file or directory

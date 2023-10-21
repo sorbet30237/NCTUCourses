@@ -1,0 +1,8 @@
+./testcase/1.txt: line 1: cd: tarfs: Transport endpoint is not connected
+/home/nctu/Documents
+./testcase/1.txt: line 3: cd: dir1/dir2: No such file or directory
+/home/nctu/Documents
+/home
+./testcase/1.txt: line 7: cd: largefiles: No such file or directory
+./testcase/1.txt: line 8: cd: largefile/../dir: No such file or directory
+/home

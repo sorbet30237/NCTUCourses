@@ -1,3 +1,0 @@
-tarfs:
-ls: reading directory 'tarfs': Input/output error
-total 0

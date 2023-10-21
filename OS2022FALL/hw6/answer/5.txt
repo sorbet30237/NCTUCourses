@@ -1,4 +1,0 @@
-total 0
--rw-rw-r-- 0 nctu nctu 23 Nov 26  2019 blue.txt
--rw-rw-r-- 0 nctu nctu 22 Nov 26  2019 red.txt
--rw-rw-r-- 0 nctu nctu 12 Nov 26  2019 yellow.txt
